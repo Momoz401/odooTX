@@ -1,0 +1,48 @@
+<odoo>
+  <record id="view_plant_batch_form" model="ir.ui.view">
+    <field name="name">plant.batch.form</field>
+    <field name="model">plant.batch</field>
+    <field name="arch" type="xml">
+      <form string="批次管理">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="base_manager"/>
+            <field name="plot"/>
+            <field name="area"/>
+            <field name="plant_date"/>
+            <field name="grow_cycle"/>
+            <field name="harvest_cycle"/>
+            <field name="harvest_start"/>
+            <field name="harvest_end"/>
+            <field name="note"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_plant_batch_tree" model="ir.ui.view">
+    <field name="name">plant.batch.tree</field>
+    <field name="model">plant.batch</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="base_manager"/>
+        <field name="plot"/>
+        <field name="plant_date"/>
+        <field name="harvest_start"/>
+        <field name="harvest_end"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="action_plant_batch" model="ir.actions.act_window">
+    <field name="name">批次管理</field>
+    <field name="res_model">plant.batch</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="menu_plant_batch_root" name="种植管理"/>
+  <menuitem id="menu_plant_batch" name="批次信息" parent="menu_plant_batch_root" action="action_plant_batch"/>
+</odoo>
