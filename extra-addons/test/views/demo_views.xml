@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_test_demo_tree" model="ir.ui.view">
         <field name="name">test.demo.tree</field>
@@ -26,12 +25,13 @@
         </field>
     </record>
 
-    <menuitem id="menu_test_root" name="测试模块"/>
-    <menuitem id="menu_test_demo" name="测试数据" parent="menu_test_root" action="action_test_demo"/>
-
+    <!-- 必须先定义action再引用 -->
     <record id="action_test_demo" model="ir.actions.act_window">
         <field name="name">测试数据</field>
         <field name="res_model">test.demo</field>
         <field name="view_mode">tree,form</field>
     </record>
+
+    <menuitem id="menu_test_root" name="测试模块"/>
+    <menuitem id="menu_test_demo" name="测试数据" parent="menu_test_root" action="action_test_demo"/>
 </odoo>
