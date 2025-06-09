@@ -1,6 +1,8 @@
+
+print("✅ PlantBatch 模型被加载！")
 from odoo import models, fields, api
 from datetime import timedelta
-print("✅ PlantBatch 模型被加载！")
+
 class PlantBatch(models.Model):
     _name = 'plant.batch'
     _description = '种植批次'

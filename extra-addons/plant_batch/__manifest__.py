@@ -5,7 +5,6 @@
     'author': 'Taixing Project',
     'depends': ['base'],
     'data': [
-        'security/ir.model.access.csv',
         'views/plant_batch_views.xml',
     ],
     'installable': True,
