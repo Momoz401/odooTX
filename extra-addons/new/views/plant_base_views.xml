@@ -1,0 +1,40 @@
+<odoo>
+    <record id="view_plant_base_list" model="ir.ui.view">
+        <field name="name">plant.base.list</field>
+        <field name="model">plant.base</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="manager_id"/>
+                <field name="area"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_plant_base_form" model="ir.ui.view">
+        <field name="name">plant.base.form</field>
+        <field name="model">plant.base</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="manager_id"/>
+                        <field name="area"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_plant_base" model="ir.actions.act_window">
+        <field name="name">基地管理</field>
+        <field name="res_model">plant.base</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_plant_base_root" name="基地管理" sequence="1"/>
+    <menuitem id="menu_plant_base" name="基地列表" parent="menu_plant_base_root" action="action_plant_base" sequence="2"/>
+</odoo>

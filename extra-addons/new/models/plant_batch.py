@@ -5,26 +5,13 @@ class PlantBatch(models.Model):
     _description = '批次表'
 
     name = fields.Char('批次编号', required=True, readonly=True, copy=False)
-    area = fields.Float('面积(亩)')
+    base_id = fields.Many2one('plant.base', string='基地', required=True)
+    base_code = fields.Char('基地代号', related='base_id.code', store=True, readonly=True)
+    manager_id = fields.Many2one('hr.employee', string='基地经理', related='base_id.manager_id', store=True, readonly=True)
+    area = fields.Float('基地面积(亩)', related='base_id.area', store=True, readonly=True)
     start_date = fields.Date('种植日期', required=True)
     end_date = fields.Date('采收期末')
-    manager_id = fields.Many2one(
-        'hr.employee',
-        string='基地经理',
-        domain="[('job_title','=','基地经理')]",
-        required=True
-    )
-    base_code = fields.Char(
-        string='基地代号',
-        related='manager_id.base_code',
-        store=True,
-        readonly=True
-    )
-    product_id = fields.Many2one(
-        'product.product',
-        string='产品名称',
-        required=True
-    )
+    product_id = fields.Many2one('product.product', string='产品名称', required=True)
     remark = fields.Text('备注')
 
     @api.model
@@ -36,8 +23,8 @@ class PlantBatch(models.Model):
                 date_str = date_obj.strftime('%y%m%d')
             except Exception:
                 date_str = ''
-        manager = self.env['hr.employee'].browse(vals.get('manager_id')) if vals.get('manager_id') else False
-        base_code = manager.base_code if manager else ''
+        base = self.env['plant.base'].browse(vals.get('base_id')) if vals.get('base_id') else False
+        base_code = base.code if base else ''
         product_obj = self.env['product.product'].browse(vals.get('product_id')) if vals.get('product_id') else False
         product_name = product_obj.name if product_obj else ''
         vals['name'] = f"{date_str}-{base_code}-{product_name}"

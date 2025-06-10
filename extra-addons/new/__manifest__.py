@@ -8,6 +8,7 @@
         'security/ir.model.access.csv',
         'views/new_model_views.xml',
         'views/plant_batch_views.xml',
+        'views/plant_base_views.xml',
 
 
     ],
