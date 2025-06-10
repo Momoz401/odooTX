@@ -5,17 +5,21 @@ class PlantBatch(models.Model):
     _description = '批次表'
 
     name = fields.Char('批次编号', required=True, readonly=True, copy=False)
-    category = fields.Char('类别')
     area = fields.Float('面积(亩)')
     start_date = fields.Date('种植日期', required=True)
     end_date = fields.Date('采收期末')
     manager_id = fields.Many2one(
         'hr.employee',
         string='基地经理',
-        domain="[('job_title','=','基地经理')]",  # 只显示“基地经理”
+        domain="[('job_title','=','基地经理')]",
         required=True
     )
-    base_code = fields.Char('基地代号', related='manager_id.base_code', store=True, readonly=True)
+    base_code = fields.Char(
+        string='基地代号',
+        related='manager_id.base_code',
+        store=True,
+        readonly=True
+    )
     product_id = fields.Many2one(
         'product.product',
         string='产品名称',
@@ -25,7 +29,6 @@ class PlantBatch(models.Model):
 
     @api.model
     def create(self, vals):
-        # 自动生成批次编号
         date_str = ''
         if vals.get('start_date'):
             try:
