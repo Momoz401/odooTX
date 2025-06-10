@@ -43,4 +43,8 @@
         <field name="name">批次管理</field>
         <field name="res_model">plant.batch</field>
         <field name="view_mode">list,form</field>
-    </rec
+    </record>
+
+    <menuitem id="menu_plant_batch_root" name="批次管理" sequence="10"/>
+    <menuitem id="menu_plant_batch" name="批次列表" parent="menu_plant_batch_root" action="action_plant_batch" sequence="10"/>
+</odoo>
