@@ -1,4 +1,28 @@
 <odoo>
+    <!-- 批次表单视图 -->
+    <record id="view_plant_batch_form" model="ir.ui.view">
+        <field name="name">plant.batch.form</field>
+        <field name="model">plant.batch</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" readonly="1"/>
+                        <field name="category"/>
+                        <field name="area"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="manager_id"/>
+                        <field name="base_code" readonly="1"/>
+                        <field name="product_id"/>
+                        <field name="remark"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- 批次列表视图，用 list 标签 -->
     <record id="view_plant_batch_list" model="ir.ui.view">
         <field name="name">plant.batch.list</field>
         <field name="model">plant.batch</field>
@@ -10,38 +34,21 @@
                 <field name="start_date"/>
                 <field name="end_date"/>
                 <field name="manager_id"/>
+                <field name="base_code"/>
+                <field name="product_id"/>
+                <field name="remark"/>
             </list>
         </field>
     </record>
 
-    <record id="view_plant_batch_form" model="ir.ui.view">
-        <field name="name">plant.batch.form</field>
-        <field name="model">plant.batch</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="category"/>
-                        <field name="area"/>
-                    </group>
-                    <group>
-                        <field name="start_date"/>
-                        <field name="end_date"/>
-                        <field name="manager_id"/>
-                    </group>
-                    <field name="remark"/>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
+    <!-- 动作定义 -->
     <record id="action_plant_batch" model="ir.actions.act_window">
-        <field name="name">批次表</field>
+        <field name="name">批次管理</field>
         <field name="res_model">plant.batch</field>
         <field name="view_mode">list,form</field>
     </record>
 
+    <!-- 菜单 -->
     <menuitem id="menu_plant_batch_root" name="批次管理" sequence="10"/>
-    <menuitem id="menu_plant_batch" name="批次表" parent="menu_plant_batch_root" action="action_plant_batch" sequence="10"/>
+    <menuitem id="menu_plant_batch" name="批次列表" parent="menu_plant_batch_root" action="action_plant_batch" sequence="10"/>
 </odoo>

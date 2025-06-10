@@ -3,7 +3,7 @@
     'version': '1.0',
     'category': 'Agriculture',
     'summary': '泰兴公司生产批次信息管理',
-    'depends': ['base','hr'],
+    'depends': ['base','hr','sale', 'product'],
     'data': [
         'security/ir.model.access.csv',
         'views/new_model_views.xml',
